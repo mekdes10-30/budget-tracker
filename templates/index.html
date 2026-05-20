@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="cards">
+    <div class="card">
+        <h3>Total Income</h3>
+        <p class="income">{{ total_income }} ETB</p>
+    </div>
+    <div class="card">
+        <h3>Total Expenses</h3>
+        <p class="expense">{{ total_expenses }} ETB</p>
+    </div>
+    <div class="card">
+        <h3>Balance</h3>
+        <p class="balance">{{ balance }} ETB</p>
+    </div>
+</div>
+
+<a href="/add" class="btn">+ Add Transaction</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Note</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction[5][:10] }}</td>
+            <td>{{ transaction[1] }}</td>
+            <td>{{ transaction[2] }}</td>
+            <td>{{ transaction[3] }} ETB</td>
+            <td>{{ transaction[4] }}</td>
+            <td><a href="/delete/{{ transaction[0] }}" class="delete">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
